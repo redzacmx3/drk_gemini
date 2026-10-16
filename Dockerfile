@@ -1,6 +1,7 @@
 # Multi-Stage Dockerfile für DRK Warenbestand
-# Builder mit Debian glibc für native Rolldown & esbuild Unterstützung auf amd64 und arm64
-FROM node:22-bookworm-slim AS build
+# Der Build-Stage läuft nativ auf dem Host ($BUILDPLATFORM), um platform-agnostische Web-Dateien zu erzeugen.
+# Dies verhindert das QEMU-Problem mit npm/rolldown auf ARM64.
+FROM --platform=$BUILDPLATFORM node:22-bookworm-slim AS build
 
 WORKDIR /app
 
@@ -8,11 +9,11 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install --legacy-peer-deps
 
-# Quellcode kopieren und bauen
+# Quellcode kopieren und Web-Assets (HTML/JS/CSS) kompilieren
 COPY . .
 RUN npm run build
 
-# Schlanker Production Runner mit Nginx
+# Schlanker Multi-Arch Production Runner mit Nginx für das Zielsystem ($TARGETPLATFORM)
 FROM nginx:alpine AS runner
 
 # SPA Routing Konfiguration (Fallback auf index.html für React Router / Tabs)
