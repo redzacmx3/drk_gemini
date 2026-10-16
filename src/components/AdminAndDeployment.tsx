@@ -88,10 +88,10 @@ version: '3.8'
 services:
   drk-inventory:
     container_name: drk-warenbestand-laupheim
-    image: drk-warenbestand:latest
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: ghcr.io/redzacmx3/drk_gemini:latest
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
     restart: unless-stopped
     ports:
       - "8080:8080" # Standard HTTP Port für Tailscale / lokales LAN

@@ -29,7 +29,7 @@ services:
       - proxy_net
 
   drk-inventory:
-    image: drk-warenbestand:latest
+    image: ghcr.io/redzacmx3/drk_gemini:latest
     container_name: drk-warenbestand
     restart: unless-stopped
     labels:
