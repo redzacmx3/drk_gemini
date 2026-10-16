@@ -1,0 +1,6 @@
+{
+  "name": "DRK Warenbestand & Medizinprodukte (OV Laupheim)",
+  "description": "Moderne, responsive Bestands- und Medizinprodukteverwaltung nach MPBetreibV für DRK Bereitschaften mit Chargen-FEFO, Kofferprüfungen, Geräteakten und Web-Install-Wizard.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
